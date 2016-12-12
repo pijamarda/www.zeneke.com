@@ -1,0 +1,235 @@
+---
+layout: default
+---
+<div id="navigation_left">
+	<a href="/articulo/gamedev/parte1"> Parte 1</a>
+	<ul>
+	    <li><a href="/articulo/gamedev/parte1">Instalacion</a></li>
+	    <li><a href="/articulo/gamedev/parte1/poo.html">POO</a></li>
+	    <li><a href="/articulo/gamedev/parte1/clasesjava.html">Clases en Java</a></li>
+	    <li><a href="/articulo/gamedev/parte1/ejemplobanco.html">Ejemplo: Banco</a></li>
+	</ul>
+	<a href="/articulo/gamedev/parte2"> Parte 2</a> <br />
+	<a href="/articulo/gamedev/parte3"> Parte 3</a>
+</div>
+
+<div id="content">
+
+	<article>
+		<header>
+			<time datetime="2014-09-29">29 Septiembre, 2014</time>
+			<h1>
+				Ejemplo: Banco
+			</h1>
+		</header>
+		<h2>Descripcion inicial</h2>
+		<p>	Primero identificamos las principales clases que podemos utilizar</p>	
+		<img src="img/banco1.png">
+		
+		<h2>Declaramos la estructura del programa</h2>
+		<p>
+		Creamos un fichero que se llame por ejemplo <i>AppBanco.java</i> e introducimos la estructura basica del codigo
+		</p>
+		<div class="codeboxbig"><pre><code>class Banco
+	{
+		//Definicion de la clase Cliente
+		class Cliente
+		{
+			//Atributos
+			Integer id;
+			Integer saldo;
+			String nombre;
+			//Constructor
+			public Cliente(){}		
+			//Metodos
+			public void sacarDinero(Integer dinero){}
+			public void ingresarDinero(Integer dinero){}		
+		}
+		//Definicion de la clase principal Banco
+		//Atributos
+		static Integer numClientes;
+		Integer MAXCLIENTES;
+		Cliente[] clientes;
+		//Constructor
+		public Banco(){}
+		//Metodos
+		public void menuPrincipal(){}
+		private void crearCuenta(String nombre){}
+	}
+
+	//Clase principal
+	public class AppBanco
+	{
+		public static void main(String args[])
+		{
+			System.out.println("Bienvenido al banco");
+		}	
+	}</code></pre>		
+		</div>
+		<p>
+		Guardamos los cambios y probamos a compilar y ejecutar, deberia salirnos el mensaje de bienvenida
+		</p>
+		<div class="codebox"><pre><code>javac AppBanco.java
+	java AppBanco
+	Bienvenido al banco</code></pre>		
+		</div>
+		<p>
+		Clase Cliente
+		</p>
+		<div class="codeboxbig"><pre><code>class Cliente
+		{
+			Integer id;
+			Integer saldo;
+			String nombre;
+
+			public Cliente(String nom, Integer cliente_id)
+			{
+				nombre = nom;		
+				id = cliente_id;
+				saldo = 0;
+			}
+
+			public boolean sacarDinero(Integer dinero)
+			{
+				if ((saldo - dinero) >= 0 )
+				{
+					saldo -= dinero;
+					return true;
+				}
+				else return false;
+			}
+
+			public Integer ingresarDinero(Integer dinero)
+			{
+				if (dinero > 0)
+					saldo += dinero;
+				return saldo;
+			}
+			public Integer getId() {return id;}
+			public Integer getSaldo() {return saldo;}
+			public String getNombre() {return nombre;}
+		}</code></pre>		
+		</div>
+			<p>
+		Clase Banco
+		</p>
+		<div class="codeboxbig"><pre><code>class Banco
+	{
+		class Cliente
+		{
+			........
+		}
+
+
+		static Integer numClientes;
+		Integer MAXCLIENTES;
+		Cliente[] clientes;
+
+		public Banco()
+		{
+			numClientes = 0;
+			MAXCLIENTES = 1000;
+			clientes = new Cliente[MAXCLIENTES];
+		}
+
+		public Integer menuPrincipal()
+		{
+			Integer opcion = -1;
+			Scanner input = new Scanner(System.in);
+			System.out.println("Bienvenido al Banco Lepton, seleccione una opcion");
+			System.out.println("1. Crear cuenta");
+			System.out.println("2. Sacar dinero");
+			System.out.println("3. Ingresar dinero");
+			System.out.println("0. Terminar aplicacion");
+			opcion = input.nextInt();
+			return opcion;
+		}
+
+		public void menuCrearCuenta()
+		{
+			String nombre = "";
+			Scanner input = new Scanner(System.in);
+			System.out.println("Ha elegido crear cuenta");
+			System.out.println("Introduzca su nombre");		
+			nombre = input.nextLine();
+			System.out.println("Gracias "+nombre);
+			crearCuenta(nombre);
+		}
+
+		private void crearCuenta(String nombre)
+		{
+			Integer numeroDeCliente = numClientes+1;
+			clientes[numClientes] = new Cliente(nombre, numeroDeCliente);		
+			System.out.println("Su numero de cliente es: "+ clientes[numClientes].getId());
+			numClientes+=1;
+		}
+
+		public void sacarDinero()
+		{
+			String nombre = "";
+			Scanner input = new Scanner(System.in);
+			System.out.println("Ha elegido sacar dinero");
+			System.out.println("Introduzca su id");		
+			Integer id = input.nextInt();
+			nombre = clientes[id-1].getNombre();
+			System.out.println("Hola "+nombre+" ,cuanto desea sacar");
+			Integer dinero = input.nextInt();
+			if (clientes[id-1].sacarDinero(dinero))
+				System.out.println("operacion aceptada");
+			else
+				System.out.println("operacion denegada");
+			System.out.println("Su saldo es: "+ clientes[id-1].getSaldo());
+		}
+
+		public void ingresarDinero()
+		{
+			String nombre = "";
+			Scanner input = new Scanner(System.in);
+			System.out.println("Ha elegido ingresar dinero");
+			System.out.println("Introduzca su id");		
+			Integer id = input.nextInt();
+			nombre = clientes[id-1].getNombre();
+			System.out.println("Hola "+nombre+" ,cuanto desea ingresar");
+			Integer dinero = input.nextInt();		
+			System.out.println("Su saldo es: "+ clientes[id-1].ingresarDinero(dinero));
+		}
+	}</code></pre>		
+		</div>
+		<p>
+		Clase principal AppBanco
+		</p>
+		<div class="codeboxbig"><pre><code>public class AppBanco
+	{
+		
+		static Banco bancoLepton;
+
+		public static void main(String args[])
+		{
+			Integer opcion = -5;
+
+			bancoLepton = new Banco();
+			while (opcion != 0)
+			{
+				opcion = bancoLepton.menuPrincipal();
+				switch(opcion)
+				{
+					case 1: bancoLepton.menuCrearCuenta();
+							break;
+					case 2: bancoLepton.sacarDinero();
+							break;
+					case 3: bancoLepton.ingresarDinero();
+							break;
+					default: System.out.println("Opcion no encontrada");
+				}
+			}
+		}	
+	}</code></pre>		
+		</div>
+		<p>
+		Podemos descargarnos directamente el ficheo java con todo el codigo completo:
+		<a href="AppBanco.java"> AppBanco.java </a>
+		</p>
+		
+		
+	</article>
+</div>

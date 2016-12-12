@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="css/mapa.css" />
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
+  <script type="text/javascript" src="d3/d3.v3.js"></script>
+  <script src="http://d3js.org/d3.geo.projection.v0.min.js"></script>
+  <script src="http://d3js.org/topojson.v0.min.js"></script>
+  <script src="http://code.jquery.com/jquery-2.1.0.js"></script>
+  <script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+  <script src="js/mapa.js"></script>
+</head>
+<body>
+
+<div id="wraper">
+  <div id="calendario_bloque">
+    <div id="calendario">
+      Aqui ira el calendario
+      
+    </div>
+    <div id="calendario_fecha"> Fecha </div>
+  </div>
+  
+
+  <div id="mapa">    
+  </div>
+
+<script>
+cargarMapa("data/conexiones2014-01-15.csv");
+</script>
+
+
+
+  <div id ="informacion">
+    <div id="dominio">
+      <h2> Dominio </h2>
+      <h3>
+      <div id="dominio_info">Poner el cursor encima de las ciudades</div>
+      </h3>
+    </div>    
+    <div id="orides">
+      <h2> Origen - Destino </h2>
+      <h3>
+      <div id="orides_info">Poner el cursor encima de las líneas</div>
+      </h3>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>

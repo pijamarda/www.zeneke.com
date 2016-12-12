@@ -1,0 +1,85 @@
+---
+layout: default
+---
+<div id="navigation_left">
+	<a href="/articulo/gamedev/parte1"> Parte 1</a>
+	<ul>
+	    <li><a href="/articulo/gamedev/parte1">Instalacion</a></li>
+	    <li><a href="/articulo/gamedev/parte1/poo.html">POO</a></li>
+	    <li><a href="/articulo/gamedev/parte1/clasesjava.html">Clases en Java</a></li>
+	    <li><a href="/articulo/gamedev/parte1/ejemplobanco.html">Ejemplo: Banco</a></li>
+	</ul>
+	<a href="/articulo/gamedev/parte2"> Parte 2</a> <br />
+	<a href="/articulo/gamedev/parte3"> Parte 3</a>
+</div>
+
+<div id="content">
+	<article id="inicial">
+		<header>
+			<time datetime="2014-09-23">23 Septiembre, 2014</time>
+			<h1>
+				Preparacion del entorno en Windows
+			</h1>
+		</header>
+		<h2>Descarga</h2>
+		<p>	Acceder a la web de Oracle y descargarnos el ultimo JDK disponible</p>
+		<p>	<a href="http://www.oracle.com/technetwork/java/javase/downloads/index.html"> Enlance de descarga </a></p>
+				
+		<p>Seleccionar la version JDK para windows, por ejemplo: <br /> 
+		<b>"Windows x64	173.08 MB  	  jdk-8u20-windows-x64.exe" </b> <br />
+		</p>
+		<h2>Instalacion</h2>
+		<p>
+		Hacemos doble click sobre el fichero descargado y seguimos las instrucciones	
+		</p>
+		<p>Una vez instalado en windows comprobamos que funciona correctamente. <br />
+		Lo primero es probar que accedemos al comando <i>javac</i> desde cualquier parte del sistema <br />
+		Arrancar la consola de Windows <i> Boton windows -> cmd -> Enter </i>
+		y escribir el comando
+		</p>
+		<div class="codebox">
+			<code> 
+				javac
+			</code>
+		</div>
+		<p>Deberemos ver los comandos de ayuda para el compilador. <br />
+		En principio, esto nos indica que esta correctamente instalado</p>
+		
+		<h2>Compilar y ejecutar</h2>
+		<p> Primero vamos a crear nuestro primera programa basico, copiar el codigo indicado a continuacion en un fichero de texto
+		que salvaremos con el nombre <i>HelloWorld.java</i>, es imporante respetar el nombre del fichero y la extension.</p>
+		<div class="codebox">
+			<code> 
+				public class HelloWorld { <br />
+				public static void main(String[] args) { <br />
+				System.out.println("Hello, World");  <br />
+				} <br />
+				} <br />
+			</code>
+		</div>
+		<p>Nos situamos en la consola de windows donde esta ubicado el fichero y compilamos con el comando</p>
+		<div class="codebox">
+			<code> 
+				javac HelloWorld.java
+			</code>
+		</div>
+		
+		<p>Si ha ido todo bien no nos aparecera ningun mensaje de error, y veremos un fichero generado con nombre <i>HelloWorld.class</i></p>
+		<p>Ejecutamos el programa que acabamos de crear. Es imporante no poner ninguna extension detras del nombre</p>
+		<div class="codebox">
+			<code> 
+				java HelloWorld
+			</code>
+		</div>
+		<p>	Si todo ha ido bien deberemos ver por consola el mensaje <i>"Hello, World"</i>
+		</p>
+		<h2>Editor de texto</h2>
+		<p>
+			Lo ideal es utilizar un editor de texto para programar, como por ejemplo:
+			<ul>
+				<li><a href="http://www.sublimetext.com/3">Sublime Text 3</a></li>
+				<li><a href="http://notepad-plus-plus.org/download">Notepad ++</a></li>
+			</ul>
+		</p>
+	</article>
+</div>

@@ -1,0 +1,80 @@
+---
+layout: default
+---
+<div id="navigation_left">
+	<a href="/articulo/gamedev/parte1"> Parte 1</a>
+	<ul>
+	    <li><a href="/articulo/gamedev/parte1">Instalacion</a></li>
+	    <li><a href="/articulo/gamedev/parte1/poo.html">POO</a></li>
+	    <li><a href="/articulo/gamedev/parte1/clasesjava.html">Clases en Java</a></li>
+	    <li><a href="/articulo/gamedev/parte1/ejemplobanco.html">Ejemplo: Banco</a></li>
+	</ul>
+	<a href="/articulo/gamedev/parte2"> Parte 2</a> <br />
+	<a href="/articulo/gamedev/parte3"> Parte 3</a>
+</div>
+
+<div id="content">
+
+	<article>
+		<header>
+			<time datetime="2014-09-25">25 Septiembre, 2014</time>
+			<h1>
+				Clases en Java
+			</h1>
+		</header>
+		<h2>Declaracion de clase</h2>
+		<p>	Las clases en java constan basicamente de los siguientes elementos:</p>	
+		<ul>
+			<li>Nombre de la clase</li>
+			<li>Constructor</li>
+			<li>Atributos</li>
+			<li>Metodos</li>
+		</ul>
+		<p>
+			La sintaxis general para definir una clase en Java es la siguiente
+		</p>
+		<div class="codebox"><pre><code>public class Ave {	
+			
+		//Atributos
+		public String color;
+		private String sexo;
+		private int sexo;
+
+		//Constructor por defecto
+		public Ave(){
+			color = "negro";
+			sexo = "V";
+		}
+
+		//Constructor con inicializacion de atributos
+		public Ave(String col, String sex){
+			color = col;
+			sexo = sex;
+		}
+
+		//Metodos
+		public int getEdad {
+			return edad;
+		}
+		public void setColor(String col) {
+			color = col;
+		}
+		public boolean dormir();
+		public int mover();
+	}</code></pre>		
+		</div>
+		<h2>Declaracion de instancia</h2>
+		<p>
+		Para instanciar un objecto sin atributos iniciales de la clase Ave lo realizamos de la siguiente manera:
+		</p>
+		<div class="codebox"><pre><code>Ave ron = new Ave()</code></pre>		
+		</div>
+		<p>
+		Para instanciar un objecto con atributos utilizando el otro constructor:
+		</p>
+		<div class="codebox"><pre><code>Ave ron = new Ave("blanco","M")</code></pre>		
+		</div>
+		
+		
+	</article>
+</div>

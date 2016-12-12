@@ -1,0 +1,206 @@
+/* CSS de zeneke */
+
+body {
+    text-align:left;
+    background: #F5F5F0;
+	color: black;
+	font: 15px/22px 'Helvetica Neue', sans-serif;
+}
+
+h1 {color:black;text-align:center;}
+h2 {color:black;text-align:left;}
+h3 {color:black;text-align:center;}
+/*p,ul,li {color:black;text-align:left;}*/
+
+/**
+ * Links
+ */
+
+a {
+  color: #2e6eb0;
+  text-decoration: underline;
+}
+
+a:active {
+ 	color: #000;
+}
+
+a:hover,
+a:active {
+	outline: none;
+}
+
+a:focus, 
+a:hover {
+	color: #f43059;
+}
+
+a:focus {
+	outline: dotted thin;
+}
+
+a:link {
+  -webkit-tap-highlight-color: #fe7793;
+}
+
+#wrapper { 
+    width:85%;
+    margin-left:auto; /* "auto" to help center the wrapper along with margin-right */
+    margin-right:auto; /* "auto" to help center the wrapper along with margin-left */
+}
+
+#header {
+    width:100%; /* Takes 100% width of wrapper's width */
+    color: #000;
+	font-size: 35px;
+	font-weight: normal;
+	line-height: 1;
+    margin: 0;
+	padding: 0;
+	word-wrap: break-word;
+
+}
+ 
+#navigation_left {
+    
+    width:20%;
+    float:left; 
+    margin-top: 20px;      
+}
+
+
+
+#navigation_top {
+    border:1px solid #ccc;
+    border-width:1px 0;
+    list-style:none;
+    margin:0;
+    padding:0;
+    text-align:center;
+    margin-bottom: 2em;
+
+}
+
+#navigation_top li{
+    display:inline;
+}
+
+#navigation_top a{
+    display:inline-block;
+    padding:10px;
+    background: #000;
+	background: -moz-linear-gradient(top,  #454545,  #000);
+	background: -o-linear-gradient(top, #454545, #000);
+	background: -webkit-gradient(linear, left top, left bottom, from(#454545), to(#000));
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#454545', endColorstr='#000000');
+	-ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#454545, endColorstr=#000000)";
+	-webkit-background-clip: padding-box;
+	border: 1px solid #000;
+	-moz-border-radius: 3px;
+	-ms-border-radius: 3px;
+	-o-border-radius: 3px;
+	-webkit-border-radius: 3px;
+	border-radius: 3px;
+	color: #fff;
+	font-size: 11px;
+	font-weight: bold;
+  line-height: 20px;
+	margin: 0 1px 1px 0;
+	padding: 4px 10px;
+	position: relative;
+	text-decoration: none;
+	text-shadow: 0 1px 1px #000;
+  text-transform: uppercase;
+}
+
+#navigation_top a:focus,
+#navigation_top a:hover {
+	background: #000;
+	background: -moz-linear-gradient(top,  #666,  #000);
+	background: -o-linear-gradient(top, #666, #000);
+	background: -webkit-gradient(linear, left top, left bottom, from(#666), to(#000));
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#666666', endColorstr='#000000');
+	-ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#666666, endColorstr=#000000)";
+}
+ 
+#content {
+    width:80%;
+    float:right; /* Positions content right next to the navigation section instead of under it.
+                    Floating to the right works just the same way, in this case */ 
+}
+
+#footer {
+    clear:both; /* Makes absolute sure to position footer under BOTH the content and navigation bars.*/
+                /* This is known as "clearing a float", and only works when an element(s) above is using the "float" property. */
+    width:100%; /* Takes up 100% width of wrapper */
+    text-align:center;
+    border:1px solid #ccc;
+    border-width:1px 0 0 0;
+}
+
+
+article {border: 1px solid #ffbc66;
+      	padding: 1em;
+      	margin-left: 1em;
+      	margin-right: 1em;
+        margin-top:5px;
+        margin-bottom:50px;}
+
+article header {
+    text-align: center;        
+}
+
+article h1 {
+    color:black;
+    text-align:center;
+    font-size: 1.5em;
+}
+article h2 {
+    color:black;
+    text-align:left;
+    font-size: 1.2em;
+}
+article h3 {
+    color:black;
+    text-align:center;
+    font-size: 1.0em;
+}
+
+article time {
+    color:black;    
+    font-size: 1.1em;
+    padding: 5px 0;}
+
+.codebox {
+    /* Below are styles for the codebox (not the code itself) */
+    border:1px solid black;
+    background-color:#EEEEFF;
+    width:300px;
+    overflow:auto;    
+    padding:10px;
+    text-align:left; /* esto centra la caja en el medio */
+}
+
+.codeboxbig {
+    /* Below are styles for the codebox (not the code itself) */
+    border:1px solid black;
+    background-color:#EEEEFF;
+    width:600px;
+    overflow:auto;    
+    padding:10px;
+    text-align:left; /* esto centra la caja en el medio */
+}
+
+.codebox code {
+    /* Styles in here affect the text of the codebox */
+    font-size:1em;
+    font-family:"Lucida Console";
+    /* You could also put all sorts of styling here, like different font, color, underline, etc. for the code.*/
+}
+
+.codeboxbig code {
+    /* Styles in here affect the text of the codebox */
+    font-size:1em;
+    font-family:"Lucida Console";
+    /* You could also put all sorts of styling here, like different font, color, underline, etc. for the code.*/
+}

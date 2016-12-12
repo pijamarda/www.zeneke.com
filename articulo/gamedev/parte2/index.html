@@ -1,0 +1,76 @@
+---
+layout: default
+---
+<div id="navigation_left">
+	<a href="/articulo/gamedev/parte1"> Parte 1</a> <br />
+	<a href="/articulo/gamedev/parte2"> Parte 2</a>
+	<ul>
+	    <li><a href="/articulo/gamedev/parte2">Introduccion</a></li>
+	    <li><a href="/articulo/gamedev/parte2/instalacion.html">Instalacion</a></li>   
+	</ul>
+	<a href="/articulo/gamedev/parte3"> Parte 3</a>
+</div>
+
+<div id="content">
+
+	<article id="inicial">
+		<header>
+			<time datetime="2014-09-29">29 Septiembre, 2014</time>
+			<h1>
+				Introduccion
+			</h1>
+		</header>
+		<h2>Desarrollo de un videojuego</h2>
+		<p>En principio es lo mismo que desarrollar un programa normal, como el que vimos en la parte 1 de como desarrollar una aplicacion de Banca. <br />
+		Normalmente un videojuego esta siempre a la espera de <i>user input events</i>, ademas aunque el usuario no este interaccionando en todo momento el videojuego tiene que seguir mostrando por pantalla animaciones, sonidos por el altavoz, etcetera.
+		<br />
+		En resumen un videojuego (en programacion) se podria definir como:
+		</p>
+		<ol>
+		<li> Procesar el input del usuario</li>
+		<li> Actualizar los elementos que componen el videojuego</li>
+		<li> Renderizar por pantalla los cambios producidos</li>	
+		</ol>
+		
+		<p>
+		En pseudo-codigo quedaria de la siguiente manera:
+		</p>
+		<div class="codebox">
+			<pre><code>while (true)
+	{
+		processInput();
+		update();
+		render();
+	}</code></pre>
+		</div>
+
+
+		<h2>Libreria libGDX</h2>
+		<p>	Si bien es posible programar un videojuego utlizando la bil estandar del lenguaje con el que estemos trabajando (en nuestro caso Java). <br />
+		Lo idea es utilizar una biblioteca que tenga facilidades para el desarrollo de videojuegos, es decir:
+		<ul>
+		<li> Acceso simplificado al input del usuario.</li>
+		<li> Facilitar la creacion de menus y ventanas.</li>
+		<li> Abstraer la renderizacion de graficos.</li>
+		<li> Facilitar el acceso a Hardware, como el audio, el monitor, joystick, etc.</li>
+		
+		</ul>
+		</p>
+		<p>	
+		Para el curso vamos a utilizar una de las bibliotecas mas populares en java. <br />
+		Que ademas de ser una de las mas utilizadas en java, tiene la ventaja de que es capaz de generar ejecutables en casi todas las plataformas de videojuegos conocidas (PC, Mac, Linux, IOS, Android, etc...).
+		</p>
+		<a href="http://libgdx.badlogicgames.com/"> Enlance a libGDX </a>
+				
+		<h2>IDE de Desarrollo</h2>
+		<p>	Otro elemento con el que vamos a contar tambien a partir de ahora para el desarrollo de videojuegos, es con un <b>IDE</b>, (integrated development environment). 
+		</p>
+		<p>
+		Es un elemento que nos va a facilitar mucho las tareas de debugging, packaging, linking, etc.
+		</p>
+		<p>	
+		Para el curso vamos a utilizar IntelliJ IDEA, que es uno de los mejores entornos de desarrollo profesionales y gratuitos. Ademas que facilita mucho la integracion con la bibloteca libGDX. 
+		</p>
+		<a href="http://www.jetbrains.com/idea/"> Enlance a IntelliJ IDEA </a>
+	</article>
+</div>

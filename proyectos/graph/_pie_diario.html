@@ -1,0 +1,108 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<title>Datos Semanales</title>
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/highcharts.js"></script>
+
+<script src="js/modules/exporting.js"></script>
+
+<script type="text/javascript">
+
+$(document).ready(function () {
+
+    	// Radialize the colors
+		Highcharts.getOptions().colors = Highcharts.map(Highcharts.getOptions().colors, function(color) {
+		    return {
+		        radialGradient: { cx: 0.5, cy: 0.3, r: 0.7 },
+		        stops: [
+		            [0, color],
+		            [1, Highcharts.Color(color).brighten(-0.3).get('rgb')] // darken
+		        ]
+		    };
+		});
+		
+		// Build the chart
+	//
+        var options = {
+            chart: {
+	    	renderTo: 'container',
+                //plotBackgroundColor: null,
+                //plotBorderWidth: null,
+                //plotShadow: false,
+                defaultSeriesType: 'pie'
+            },
+            title: {
+                text: 'Incidentes diarios'
+            },
+            tooltip: {
+        	    pointFormat: '{series.name}: <b>{point.percentage} %</b>',
+            	percentageDecimals: 0
+            },
+            plotOptions: {
+                pie: {
+                    allowPointSelect: true,
+                    cursor: 'pointer',
+                    dataLabels: {
+                        enabled: true,
+                        color: '#000000',
+                        connectorColor: '#000000',
+                        formatter: function() {
+                            return '<b>'+ this.point.name +'</b>: '+ this.y +' %';
+                        }
+                    }
+                }
+            },
+	    
+	    
+            series: [],
+
+            exporting: {
+               sourceWidth: 900,
+                sourceHeight: 400,
+                 
+               chartOptions: {
+                    subtitle: null
+                }
+            },
+        };
+    
+    $.get('data/_dpie_diario.csv', function(data){
+    	// Split the lines
+	var lines = data.split('\n');
+	var series = {
+		type: 'pie',
+		//name: 'lo que sea',
+		data: []
+	};
+	//Iterate over the lines
+	$.each(lines, function(lineNo, line) {
+		//Hay que introducir esta ñapa pq el script generador de CSV agrega una linea extra
+		if ( lineNo != 6 )
+		{
+		var items = line.split(',');
+
+		series.data.push({
+			name: items[0],
+			y: parseFloat(items[1])
+		});
+		if (line == "") return;
+		}
+	});
+	options.series.push(series);
+
+        var chart = new Highcharts.Chart(options);
+
+    //Create the chart
+    });
+});    
+
+</script>
+	</head>
+	<body>
+
+<div id="container" style="width: 700px; height: 400px; margin: 0 auto"></div>
+
+	</body>
+</html>

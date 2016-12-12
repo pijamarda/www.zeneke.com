@@ -1,0 +1,108 @@
+---
+layout: default
+---
+
+<div id="navigation_left">
+	<a href="/articulo/rpi">Configuracion de Raspberry:</a>
+    <ul>
+        <li><a href="/articulo/rpi/#inicial">Ionfiguracion inicial</a></li>
+        <li><a href="/articulo/rpi/#remoto">Acceso remoto</a></li>
+        <li><a href="/articulo/rpi/#extra">Extras</a></li>
+	    <li><a href="/articulo/rpi/#bastionado">Fortificacion</a></li>
+	    <li><a href="/articulo/rpi/#servidores">Servidores</a></li>           	            
+    </ul>
+    <a href="#"> Navegacion privada con Firefox:
+    <ul>
+        <li><a href="#con_router">Configuracion del router</a></li>
+        <li><a href="#con_ssh">Configurar el servidor SSH</a></li>
+        <li><a href="#con_dns">Configurar el servicio de Hosting DNS</a></li>
+        <li><a href="#con_pc">Configurar el PC</a></li>            
+    </ul>
+</div>
+<div id="content">
+	<article id="inicial">
+		<header>
+			<time datetime="2013-09-30">30 de Septiembre, 2013</time>
+			<h1>
+				Navegar con Firefox a traves del ADSL de casa utilizando la RPi
+			</h1>
+		</header>
+		<h2>Requisitos</h2>
+		<p>	
+			<li>Tener una Raspberry</li>
+			<li>Tener configurada una IP fija en la RPi</li>
+			<li>Tener funcionando el servidor SSH en la RPi</li>
+	    	<li>Poder y saber abrir los puertos del router</li>
+	    	<li>Es recomendable tener un servicio de DNS Host tipo DYNDNS</li>
+		</p>
+		<h2>Pasos</h2>
+		<p>	
+			<ol>
+			<li><a href="#con_router"> Configurar el router</a></li>
+	    	<li><a href="#con_ssh">Configurar el servidor SSH de la Raspberry</a></li>
+	    	<li><a href="#con_dns">Configurar el servicio de Hosting DNS</a></li>
+	    	<li><a href="#con_pc">Configurar el PC desde el que queremos navegar de manera segura</a></li>
+	    	</ol>
+		</p>
+		<h2 id="con_router">Configurar el router</h2>
+		<p>En esta guia no vamos a especificar todos los pasos a seguir.</br>
+			Lo importante a saber es que hay que redirigir en el Router el puerto 22, hacia la IP (local) fija de nuestra RPi
+		</p>
+
+		<h2 id="con_ssh">Configurar el servidor SSH de la RPi</h2>
+		<p>Podemos utilizar la guia original a traves de este <a ui-sref="/articulo/rpi">enlace</a></br>
+			Para comprobar primero si tenemos el puerto 22 abierto, utilizamos esta web: <a href="http://www.yougetsignal.com/tools/open-ports/">yougetsignal.com</a> </br>
+			Donde pone Remote Adress, pondremos nuestra IP publica (si lo estamos haciendo desde casa, debe ser la que viene por defecto).</br>
+			En port Number, ponemos 22. Le damos a check y debe aparecer un mensahe que pone "Port 80 is open on IP"
+		</p>
+
+		<h2 id="con_dns">Configurar el servicio de Hosting DNS</h2>
+		<p>Vamos a utilizar los servicios de <a href="http://www.no-ip.com">no-ip.com</a>, aunque tambien podemos utilizar <a href="http://www.dyndns.com">dynDNS</a></br>
+			Primero nos registramos en la web, una vez registrados, accedemos con nuestro usuario.</br>
+			Le damos a "Add a host", ponemos un Hostname (que sera el nombre que utilizaremos siempre que queramos acceder desde fuera a nuestra RPi), en escogemos cualquier tipo de dominio de los gratuitos, por ejemplo "no-ip.org". </br>
+			A partir de ahora siempre que queramos acceder a la Rpi pondremos el nombre: NombreElegido.no-ip.org </br>
+			Ahora nos podemos descargar el cliente, en nuestro equipo local de casa para que cuando cambien nuestra IP, se actualice automaticamente: <a href="http://http://www.noip.com/downloads.php">Enlace de descarga</a>
+		</p>
+		
+		<h2 id="con_pc">Configurar el PC desde el que queremos navegar</h2>
+		<p>Lo primero que hacemos es bajarnos el programa Putty para windows: <a href="http://the.earth.li/~sgtatham/putty/latest/x86/putty.exe">Descarga</a></br>
+			Lo arrancamos y configuramos la pantalla inicial de la siguiente manera:				
+		</p>
+		<a href="/articulo/rpi/img/putty_1.png">
+		<img src="/articulo/rpi/img/putty_1.png" align="center" style="margin-left:5em" alt="Configuracion putty" ></a>
+		<p>Luego seleccionamos en el menu de la izquierda: Connection -> SSH -> Tunnels </br>
+		Elegimos la opcion "Dinamic"
+		Y configuramos en la parte de "Forwarded ports", eligiendo un puerto por ejemplo el 4567.
+		</p>
+		<a href="/articulo/rpi/img/putty_2.png">
+		<img src="/articulo/rpi/img/putty_2.png" align="center" style="margin-left:5em" alt="Configuracion putty" ></a>
+		<p>Y ya esta terminada la configuracion del putty, para no perderla volvemos a seleccionar en el menu de la izquierda: Session </br>
+		Elegimos un nombre en Saved Sessions y pulsamos Save. De esta manera ya tenemos los datos guardados. </br>
+		Ahora solo le damos a open y si hemos seguido todos los pasos anteriores adecuadamente, nos saldra la siguiente pantalla, donde pondremos el usuario y clave de la Raspberry.</p>
+		<a href="/articulo/rpi/img/putty_3.png">
+		<img src="/articulo/rpi/img/putty_3.png" align="center" style="margin-left:5em" alt="Configuracion putty" ></a>
+		<p>
+		Ahora configuramos Firefox para que navege mediante el puerto 4567 </br>
+		Le damos al boton de Firefox (esquina arriba izda)-> Opciones -> Opciones </br>
+		En la pantalla de opciones seleccionamos: Avanzado -> pestaña Red -> Conexion -> boton Configuracion
+		</p>
+		<a href="/articulo/rpi/img/putty_4.png">
+		<img src="/articulo/rpi/img/putty_4.png" align="center" style="margin-left:5em" alt="Configuracion putty" ></a>
+		<p>
+		En la pantalla de Configuracion de la conexion, seleccionamos "Configuracion manual del proxy" </br>
+		En servidor SOCKS ponemos: localhost. Puerto: 4567 </br>
+		Seleccionamos SOCKS v5
+		En no usar proxy para ponemos por si acaso: localhost, 1270.0.0.1 </br>
+		Y le damos a aceptar
+		</p>
+		<a href="/articulo/rpi/img/putty_5.png">
+		<img src="/articulo/rpi/img/putty_5.png" align="center" style="margin-left:5em" alt="Configuracion putty" ></a>
+		<p>
+		Si todo ha ido bien, a partir de este momento estaremos navegando a traves del ADSL de casa, y de manera segura (es decir no nos pueden bloquear por ejemplo el acceso a youtube, o a algunas webs, ademas de que en principio no pueden saber donde hemos estado navegando). </br>
+		Para hacer una prueba podemos poner la IP de nuestro router, y nos deberia salir la pagina de configuracion.
+		</p>
+
+
+	</article>
+</div>
+	

@@ -1,0 +1,106 @@
+.clearboth { clear: both; }
+
+.spacer
+{
+float: left;
+width: 3%;
+}
+
+img
+{
+  display:inline;
+  margin:0px;
+  border:4px solid #000000;
+  border-color: aqua;
+  border-radius:15px;
+}
+
+#logo{
+    width:100%;
+    height: 141px;
+    background:url("../img/cabecera.png")
+}
+
+
+#header {
+    width:100%; /* Takes 100% width of wrapper's width */
+    height:100%; 
+    border-radius:15px;
+
+}
+
+#col1
+{
+	width:48%;
+    background-color:white;
+    float:left; 
+}
+
+#col2
+{
+	width:48%;
+    background-color:white;
+    margin-left: 1%;
+    float:right; 
+}
+
+#rowcol1
+{
+	border-top: 1px solid #ddd;
+	border-bottom: 1px solid #ddd;
+	margin-top: 10px;
+	background-color: #bbb;
+	border-radius:15px;
+}
+
+#rowcol1alt
+{
+	border-top: 1px solid #ddd;
+	border-bottom: 1px solid #ddd;
+	margin-top: 10px;
+	background-color: #ddd;
+	border-radius:15px;
+}
+
+#rowcol2
+{
+	border-top: 1px solid #ddd;
+	border-bottom: 1px solid #ddd;
+	margin-top: 10px;
+	background-color: #bbb;
+	border-radius:15px;
+}
+
+#rowcol2alt
+{
+	border-top: 1px solid #ddd;
+	border-bottom: 1px solid #ddd;
+	margin-top: 10px;
+	background-color: #ddd;
+	border-radius:15px;
+}
+
+#footer
+{
+	clear: both;
+	padding: 7px 0 5px 0;
+	font-size: 10px;
+	color: #fff;
+	text-align: center;
+	background: #fff url(../img/fd_pie.jpg) no-repeat center bottom;
+}
+
+h1, h2, h3, h4, h5, h6, p, ul, ol, dl
+{
+margin-left: 7px;
+margin-right: 7px;
+
+}
+
+h1, h2, h3, h4, h5, h6
+{
+margin-top: 5px;
+margin-bottom: 0;
+}
+
+h1+p, h2+p, h3+p, h4+p { margin-top: .2em; }

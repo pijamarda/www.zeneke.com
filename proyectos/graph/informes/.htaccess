@@ -1,0 +1,77 @@
+#
+# Apaxy by @adamwhitcroft
+#
+# For a full breakdown of the mod_autoindex module:
+# http://apache.org/docs/2.2/mod/mod_autoindex.html
+#
+
+	# ENABLE INDEXING
+	Options +Indexes
+
+	# INDEX OPTIONS
+	IndexOptions +Charset=UTF-8 +FancyIndexing +IgnoreCase +FoldersFirst +XHTML +HTMLTable +SuppressRules +SuppressDescription +NameWidth=*
+
+	# HIDE /theme DIRECTORY
+	IndexIgnore .htaccess /theme /img
+
+#
+# GENERAL ICONS (BLANK, DIRECTORY, PARENT DIRECTORY)
+#
+
+#
+# Replace /caixa_prod/informes with your directory URL eg:
+# If your directory is http://mywebsite.com/share/
+# you would change to:
+#
+# AddIcon /share/theme/icons/blank.png ^^BLANKICON^^
+#
+
+	AddIcon /caixa_prod/informes/theme/icons/blank.png ^^BLANKICON^^
+	AddIcon /caixa_prod/informes/theme/icons/folder.png ^^DIRECTORY^^
+	AddIcon /caixa_prod/informes/theme/icons/folder-home.png ..
+
+#
+# EXTENSION SPECIFIC ICONS
+#
+
+	AddIcon /caixa_prod/informes/theme/icons/audio.png .aif .iff .m3u .m4a .mid .mp3 .mpa .ra .wav .wma
+	AddIcon /caixa_prod/informes/theme/icons/bin.png .bin
+	AddIcon /caixa_prod/informes/theme/icons/c.png .c
+	AddIcon /caixa_prod/informes/theme/icons/calc.png .xlsx .xlsm .xltx .xltm .xlam .xlr .xls .csv
+	AddIcon /caixa_prod/informes/theme/icons/css.png .css
+	AddIcon /caixa_prod/informes/theme/icons/deb.png .deb
+	AddIcon /caixa_prod/informes/theme/icons/doc.png .doc .docx .docm .dot .dotx .dotm .log .msg .odt .pages .rtf .tex .wpd .wps
+	AddIcon /caixa_prod/informes/theme/icons/draw.png .svg
+	AddIcon /caixa_prod/informes/theme/icons/eps.png .ai .eps
+	AddIcon /caixa_prod/informes/theme/icons/gif.png .gif
+	AddIcon /caixa_prod/informes/theme/icons/html.png .html .xhtml .shtml .htm
+	AddIcon /caixa_prod/informes/theme/icons/ico.png .ico
+	AddIcon /caixa_prod/informes/theme/icons/java.png .jar
+	AddIcon /caixa_prod/informes/theme/icons/jpg.png .jpg .jpeg
+	AddIcon /caixa_prod/informes/theme/icons/js.png .js .json
+	AddIcon /caixa_prod/informes/theme/icons/markdown.png .md
+	AddIcon /caixa_prod/informes/theme/icons/package.png .pkg .dmg
+	AddIcon /caixa_prod/informes/theme/icons/pdf.png .pdf
+	AddIcon /caixa_prod/informes/theme/icons/php.png .php
+	AddIcon /caixa_prod/informes/theme/icons/png.png .png
+	AddIcon /caixa_prod/informes/theme/icons/ps.png .ps
+	AddIcon /caixa_prod/informes/theme/icons/psd.png .psd
+	AddIcon /caixa_prod/informes/theme/icons/rar.png .rar
+	AddIcon /caixa_prod/informes/theme/icons/rb.png .rb
+	AddIcon /caixa_prod/informes/theme/icons/rpm.png .rpm
+	AddIcon /caixa_prod/informes/theme/icons/rss.png .rss
+	AddIcon /caixa_prod/informes/theme/icons/sql.png .sql
+	AddIcon /caixa_prod/informes/theme/icons/tiff.png .tiff
+	AddIcon /caixa_prod/informes/theme/icons/text.png .txt
+	AddIcon /caixa_prod/informes/theme/icons/video.png .asf .asx .avi .flv .mkv .mov .mp4 .mpg .rm .srt .swf .vob .wmv
+	AddIcon /caixa_prod/informes/theme/icons/xml.png .xml
+	AddIcon /caixa_prod/informes/theme/icons/zip.png .zip
+	DefaultIcon /caixa_prod/informes/theme/icons/default.png
+
+#
+# THEME FILES
+#
+
+	HeaderName /caixa_prod/informes/theme/header.html
+	ReadmeName /caixa_prod/informes/theme/footer.html
+	IndexStyleSheet "/caixa_prod/css/default2.css"

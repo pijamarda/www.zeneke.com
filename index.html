@@ -1,0 +1,25 @@
+---
+layout: default
+---
+
+<div id="navigation_left">
+  <div> Proyectos: </div>
+    <ul>        
+        <li><a href="/articulo/rpi">Raspberry</a></li>
+        <li><a href="/articulo/cerdigres">Cerdigres</a></li>
+        <li><a href="/articulo/agricola">Agricola Points</a></li>
+        <li><a href="/articulo/amigo">Amigo Invisible</a></li>
+        <li><a href="/articulo/gamedev/parte1">Java Game Dev</a></li>
+    </ul>
+    </div>
+</div>
+
+<div id="content">
+  
+    {% for post in site.posts limit: 5 %}
+      <article><span>{{ post.date | date: "%Y-%m-%d" }}</span> &raquo; {{ post.title }}      
+      {{post.content}}
+      </article>
+    {% endfor %}
+  
+</div>

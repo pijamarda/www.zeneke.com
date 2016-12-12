@@ -1,0 +1,94 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<title>Datos Semanales</title>
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/highcharts.js"></script>
+
+<script src="js/modules/exporting.js"></script>
+
+<script type="text/javascript">
+
+$(document).ready(function () {
+
+    var options = {
+    
+        chart: {
+            renderTo: 'container',
+            defaultSeriesType: 'column'
+        },
+        title: {
+            text: 'Datos cuatrimestrales'
+        },
+        xAxis: {
+            categories: []
+        },
+        yAxis: {
+            title: {
+                text: 'Incidentes'
+            }
+        },
+        series: [],
+
+            exporting: {
+               sourceWidth: 900,
+                sourceHeight: 400,
+                 
+               chartOptions: {
+                    subtitle: null
+                }
+            },
+    }; 
+	    
+	    
+    
+    $.get('data/_dbarras.csv', function(data) {
+    // Split the lines
+        var lines = data.split('\n');
+        
+        // Iterate over the lines and add categories or series
+        $.each(lines, function(lineNo, line) {
+            var items = line.split(',');
+            
+            // header line containes categories
+            if (lineNo == 0) {
+                $.each(items, function(itemNo, item) {
+                    if (itemNo > 0) options.xAxis.categories.push(item);
+                });
+            }
+            
+            // the rest of the lines contain data with their name in the first 
+            // position
+            else {
+                var series = {
+                    data: []
+                };
+		// Si la lutima linea es vacia que no haga nada
+		if (line == "") return;
+                $.each(items, function(itemNo, item) {
+                    if (itemNo == 0) {
+                        series.name = item;
+                    } else {
+                        series.data.push(parseFloat(item));
+                    }
+                });
+                
+                options.series.push(series);
+        
+            }
+            
+        });
+        
+        // Create the chart
+        var chart = new Highcharts.Chart(options);
+    });   
+ }); 
+</script>
+	</head>
+	<body>
+
+<div id="container" style="width: 100%; margin: 0 auto"></div>
+
+	</body>
+</html>
