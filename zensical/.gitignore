@@ -1,0 +1,6 @@
+.venv/
+.cache*
+site*
+public*
+# Local Netlify folder
+.netlify
