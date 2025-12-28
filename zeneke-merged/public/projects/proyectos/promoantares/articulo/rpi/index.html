@@ -1,0 +1,316 @@
+
+
+<div id="navigation_left"> 
+            <a href="index.html"> Configuracion de Raspberry:</a>
+    <ul> <!-- Unordered List tag -->
+        <li><a href="index.html#inicial">Configuracion inicial</a></li>
+        <li><a href="index.html#remoto">Acceso remoto</a></li>
+        <li><a href="index.html#extra">Extras</a></li>
+        <li><a href="index.html#bastionado">Fortificacion</a></li>
+        <li><a href="index.html#servidores">Servidores</a></li>
+    </ul> <!-- Unordered list tag -->
+            <a href="tunneling.html"> Navegacion privada con Firefox:
+    <ul> <!-- Unordered List tag -->
+        <li><a href="tunneling.html#con_router">Configuracion del router</a></li>
+        <li><a href="tunneling.html#con_ssh">Configurar el servidor SSH</a></li>
+        <li><a href="tunneling.html#con_dns">Configurar el servicio de Hosting DNS</a></li>
+        <li><a href="tunneling.html#con_pc">Configurar el PC</a></li>            
+    </ul> <!-- Unordered list tag -->
+</div>
+
+<div id="content">
+
+	<article id="inicial">
+		<header>
+			<time datetime="2013-01-30">30 de Enero, 2013</time>
+			<h1>
+				Primeros pasos de configuracion de la Raspberry
+			</h1>
+		</header>
+		<h2>Cambiar el teclado a español, el timezone y locales</h2>
+		<p>	Cambiar el teclado a español.</p>
+		<div class="codebox">
+			<code> 
+				sudo nano /etc/default/keyboard
+			</code>
+		</div>			
+		<p>cambiar donde pone <i>“gb”</i> por <i>“es”</i></p>
+		<p><i>Locale ← No hacer (hay algunos problemas luego mostrando cosas en español como tildes y demás)
+		Uncheck the uk and check the one you need and then set it as default. Mine is en_AU UTF-8
+		sudo dpkg-reconfigure locales</i></p>
+		<p>Timezone</p>
+		<div class="codebox">
+			<code> 
+				sudo dpkg-reconfigure tzdata
+			</code>
+		</div>
+		<h2>Cambiar a IP estatica</h2>
+		<p> Editar <i>/etc/network/interfaces</i> y cambiar la linea:</p>
+		<div class="codebox">
+			<code> 
+				iface eth0 inet dhcp
+			</code>
+		</div>
+		<p>por</p>
+		<div class="codebox">
+			<code> 
+				iface eth0 inet static<br />
+					address 10.0.0.20<br />
+					netmask 255.255.255.0<br />
+					gateway 10.0.0.1
+			</code>
+		</div>
+		<h2>Añadir usuario normal de trabajo, y dejarle hacer SUDOs</h2>
+		<p>Type in following command in the terminal to create a new user:</p>
+		<div class="codebox">
+			<code> 
+				sudo adduser username
+			</code>
+		</div>
+		<p>	Follow the steps. <br />
+			To allow the newly created user to use the "sudo" command, type: <br />
+			sudo visudo <br />
+
+			Add following line under the "root ALL=(ALL) ALL" Line: <br />
+			yourUsername ALL=(ALL) ALL <br />
+			Now press CTRL+K, X to save and exit the editor. <br />
+			Alternatively instead of adding the user to the sudoers list, 
+			you can add your user to the sudo group with the following command: <br />
+			adduser "username" sudo
+		</p>
+	</article>
+	<article id="remoto">
+		<header>				
+			<h1>
+				Configuracion para el acceso remoto
+			</h1>
+		</header>
+		<h2>Activar el servidor SSH</h2>
+		<div class="codebox">
+			<code> 
+				sudo bash<br />
+				ssh-keygen
+			</code>
+		</div>
+		<p>Pulsamos ENTER 3 veces<br />
+		   las claves deberian aparecer en:</p>
+		<div class="codebox">
+			<code> 
+				ls /root/.ssh/
+			</code>
+		</div>
+		<p><i>id_rsa | id_rsa.pub</i> ← estos son los archivos que deberian aparecer.</p>
+
+		<h2>Deshabilitar ROOT para SSH</h2>
+		<p>Editar:</p>
+		<div class="codebox">
+			<code> 
+				/etc/ssh/sshd_config
+			</code>
+		</div>
+		<p>cambiar <i>PermitRootLogin</i> a <i>no</i> y rearrancar el servicio</p>
+		<div class="codebox">
+			<code> 
+				/etc/init.d/ssh restart
+			</code>
+		</div>
+
+		<h2>Hacer que el server SSH se arranque cada vez que se reinicia:</h2>
+		<p>rename <i>boot_enable_ssh.rc</i> to <i>boot.rc</i> 
+			on the boot partition you can do this by issuing the following the commands:</p>
+		<div class="codebox">
+			<code> 
+				sudo bash <br />
+				cd /boot <br />
+				mv boot_enable_ssh.rc boot.rc <br />
+				shutdown -r -time now
+			</code>
+		</div>
+	</article>
+	<article id="extra">
+		<header>				
+			<h1>
+				Configuraciones extra
+			</h1>
+		</header>	
+		<h2>Hacer que autocomplete despues de SUDO</h2>
+		<p>Añadir a la ultima linea del archivo <i>/etc/bash.bashrc</i> lo siguiente:
+		</p>
+		<div class="codebox">
+			<code> 
+				if [ "$PS1" ]; then <br />
+				complete -cf sudo <br />
+				fi							
+			</code>
+		</div>
+		<h2>Ampliar la memoria para tarjetas SD de mas de 2 GB:</h2>
+			<p>Firstly Login to your Raspbery Pi, then issue the following commands:
+			sudo -i <br />
+
+			This will elevate you to root status, negating the need of sudoing a lot. <br />
+			df -h <br />
+
+			Make a note of the last line <br />
+			(It will most likely be "/dev/mmcblk0p1"). <br />
+			Still logged in as root (from using sudo-i) issue the following commands: <br />
+			Ojo, hay que quitar la parte p1 <br />
+			fdisk -uc /dev/mmcblk0 <-- where mmcblk0 is what you had previously. <br />
+
+			The prompt should change to "Command (m for help):” <br />
+			Type the letter p and hit Return / Enter (this will list your partitions) <br />
+			Make a note of the "Start" value for /dev/mmcblk0p2 (mine is 157696) shown in the second image. <br />
+			Now type the letter d and hit Return / Enter. <br />
+			The prompt will ask you for "Partition number (1-4):", type in 2 and hit Return / Enter. <br />
+			Then type d again, hit Return / Enter, then enter 3 and hit Return / Enter. <br />
+			Still in the same prompt, type n and hit Return / Enter. <br />
+			Now type p and hit Return / Enter to create a primary partition. <br />
+			When you are asked for a "Partition number (1-4) :", type 2 and hit Return / Enter. <br />
+			You will then be asked for a "First sector" value, enter the value you recorded previously (157696 for me - shown in the images below) and hit Return / Enter. <br />
+			Now you'll be asked for a "Last sector", leave this blank, and hit Return / Enter. <br />
+			Finally, hit w and hit Return / Enter to write the changes. <br />
+			Now you need to reboot with the command reboot. <br />
+			Please note that this process will take a while, don't worry. The larger the SD card, the longer the re-size operation will take. <br />
+			Login again, then type sudo -i and hit Return / Enter to raise your privileges to root. <br />
+			Now type  <br />
+			resize2fs /dev/mmcblk0p2  <br />
+
+			and hit Return / Enter. <br />
+			Wait a while - have a coffee :D <br />
+			Finally, after the operation completes, type  <br />
+			df -h  <br />
+			to see your changes.
+			</p>
+		<h2>Conectar un USB stick a la raspberry</h2>
+			<p>
+			First we need to find out where our system locates the device. With the USB device not plugged in, type… <br/>
+			tail -f /var/log/messages <br/> <br/>
+
+			Then plug in your USB device and, looking in the new lines which appear, make a note of the ID – it will be something like sda1, sdb1, sda2, sdb2 etc. <br/>
+			Then CTRL-C To stop the tail command. <br/>
+			In this case the usb stick id is sda1. That means the device is located in /dev/sda1. <br/>
+			Next, we need to create a directory under /media, so you will be able to mount your drive. <br/>
+			sudo mkdir /media/usbstick  <br/>
+
+			usbstick can be whatever you want to call it <br/>
+			Then we mount the usb stick with: <br/>
+
+			<i>If you are logged in as root… (pero no utilizar ésta, ver mas abajo) <br/>
+			mount -t vfat -o rw /dev/sda1 /media/usbstick/ </i><br/>
+
+			…where sda1 is its id from the tail command and usbstick is the directory you just made. <br/>
+			para mi usuario zeneke montarlo con este comando para que tenga acceso, sino solo seria accesible mediante root. <br/>
+			sudo mount -t vfat -o uid=zeneke,gid=zeneke /dev/sda1 /media/usbstick/ <br/>
+
+			…or you won’t get read/write access (the -o stands for options, uid is user id and gid is group id). <br/>
+			Then you can go there and have a look… <br/>
+			cd /media/usbstick <br/>
+			ls -l
+			</p>
+		<h2>Para que en el arranque nos monte automaticamente la unidad <b>(SIN PROBAR)</b></h2>
+		<p>Open <i>/etc/fstab</i> as root in your favorite text editor and add a line like this: <br/>
+			Code:</p>
+		<div class="codebox">
+			<code> 
+				/dev/sda1 /media/usb vfat defaults,rw,uid=1000,gid=1000 0 0					
+			</code>
+		</div>
+		<p>Funciona pero el user=zeneke no tiene al menos permisos de escritura <br/>
+		He cambiado el uid=zeneke y gid=zeneke (comprobar)
+		</p>
+		
+	</article>
+	<article id="bastionado">
+		<header>				
+			<h1>
+				Fortificación de la plataforma
+			</h1>
+		</header>
+		<h2>Instalar fail2ban</h2>
+		<p>Para rechazar continuas peticiones de login contra en SSH:</p>
+		<div class="codebox">
+			<code> 
+				sudo apt-get install fail2ban					
+			</code>
+		</div>
+
+		<h2>Instalar el ultimo Firmware que habilita las IPTABLES</h2>
+		<p>
+			<b>“Ojo pq en futuras actualizaciones de la distro es posible que no sea necesario”</b> <br/>
+			Actually, it's not really firmware in the EEPROM sense, but more part of the bootstrap system on the SD card. <br/>
+			This is a *good* thing as it makes it a lot harder to brick your Pi. <br/>
+			This guide is copied from pixelami's blog http://blog.pixelami.com/2012/06/raspberry-pi-firmware-update-for-debian-squeeze/. <br/>
+			I claim no credit for it and am just mirroring it to keep all my Pi information in one place. <br/>
+			Step 1: Install pre-requisites (ca-certificates and git-core) <br/>
+			sudo apt-get install ca-certificates <br/>
+			sudo apt-get install git-core <br/>
+
+			Step 2: Download rpi-update using wget and copy to /usr/bin and chmod it executable <br/>
+			sudo wget http://goo.gl/1BOfJ -O /usr/bin/rpi-update <br/>
+			sudo chmod +x /usr/bin/rpi-update <br/>
+
+			Step 3: Run rpi-update <br/>
+			sudo rpi-update <br/>
+			Raspberry Pi firmware updater by Hexxeh, enhanced by AndrewS <br/>
+			Performing self-update <br/>
+			Autodetecting memory split <br/>
+			Using ARM/GPU memory split of 192MB/64MB <br/>
+			We're running for the first time <br/>
+			Setting up firmware (this will take a few minutes) <br/>
+			Using SoftFP libraries <br/>
+			/opt/vc/sbin/vcfiled: error while loading shared libraries: libvchiq_arm.so: cannot open shared object file: No such file or directory <br/>
+			If no errors appeared, your firmware was successfully setup <br/>
+			A reboot is needed to activate the new firmware <br/>
+
+			Now according to pixelami, you need to run ldconfig and the rpi-update again to complete the update. <br/>
+			Step 4: Run ldconfig (updates links and cache for shared library objects) then re-run rpi-update <br/>
+			sudo ldconfig <br/>
+			sudo rpi-update <br/>
+			Raspberry Pi firmware updater by Hexxeh, enhanced by AndrewS <br/>
+			Performing self-update <br/>
+			Autodetecting memory split <br/>
+			Using ARM/GPU memory split of 192MB/64MB <br/>
+			Updating firmware (this will take a few minutes) <br/>
+			Your firmware is already up to date <br/>
+			sudo reboot <br/>
+
+			NB: The rpi-update script updates the firmware, /boot/kernel.img, and /lib/modules <br/>
+			There are parameters that allow you to update just the firmware. <br/>
+			<a href="https://github.com/Hexxeh/rpi-update">See for the manual on rpi-update</a>
+
+		</p>
+
+		<h2>Hacer baneos largos para IPs persistentes</h2>
+			<p>
+			<a href="http://whyscream.net/wiki/index.php/Fail2ban_monitoring_Fail2ban">
+				Para rechazar continuas peticiones de login contra en SSH:</a>
+			</p>
+	</article>
+	<article id="servidores">			
+		<header>				
+			<h1>
+				Instalacion de servidores
+			</h1>
+		</header>
+		<h2>Instalar Apache2</h2>
+		<p>Primero ejecutar los siguientes comandos</p>
+		<div class="codebox">
+			<code> 
+				sudo groupadd www-data <br/>
+				sudo usermod -a -G www-data www-data <br/>		
+			</code>
+		</div>
+		<p>por si acaso actualizar el repositorio de paquetes</p>
+		<div class="codebox">
+			<code> 
+				sudo apt-get update	
+			</code>
+		</div>
+		<p>instalar el servidor</p>
+		<div class="codebox">
+			<code> 
+				sudo apt-get install apache2	
+			</code>
+		</div>
+	</article>
+</div>
+	

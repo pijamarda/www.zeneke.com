@@ -1,0 +1,41 @@
+path {
+    stroke: white;
+    stroke-width: 0.25px;
+    fill: grey;
+  }
+
+  .arc {
+    fill: none;
+    stroke: blue;
+    stroke-width: 1px;
+    stroke-linecap: round;
+  }
+
+#calendario_bloque
+{
+  float:left;
+  width:20%;
+}
+#mapa
+{
+  float:right;
+  width:80%;
+}
+
+#informacion
+{
+  clear:both;
+}
+
+#dominio
+{
+  float:left; 
+  width:200px; 
+  margin-left:50px
+}
+
+#orides
+{
+  float:left; 
+  margin-left:100px
+}

@@ -1,0 +1,63 @@
+path {
+    stroke: white;
+    stroke-width: 0.25px;
+    fill: grey;
+  }
+
+  .arc {
+    fill: none;
+    stroke: blue;
+    stroke-width: 1px;
+    stroke-linecap: round;
+  }
+
+  .arc2
+  {    
+    fill: none;
+    stroke: red;
+    stroke-width: 4px;
+    stroke-linecap: round;  
+  }
+
+#calendario_bloque
+{
+  float:left;
+  width:25%;
+}
+
+#calendario
+{
+  margin-left:15px;
+  margin-top:25px;
+}
+
+#calendario_fecha
+{
+  margin-left:15px;
+  margin-top:25px;
+}
+
+#mapa
+{
+  float:right;
+  width:75%;
+  margin-top:25px;
+}
+
+#informacion
+{
+  clear:both;
+}
+
+#dominio
+{
+  float:left; 
+  width:200px; 
+  margin-left:50px
+}
+
+#orides
+{
+  float:left; 
+  margin-left:100px
+}

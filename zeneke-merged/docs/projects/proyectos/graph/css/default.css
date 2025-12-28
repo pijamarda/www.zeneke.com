@@ -1,0 +1,125 @@
+/* CSS de zeneke */
+body {color:black;text-align:left;}
+
+#wrapper { /* "id" selector for the wrapper element. The styles in this element will refer to whatever element in the html code has the id of "wrapper." */
+    width:100%;    
+    /*border-style:solid; /* Displays border for wrapper element with help of the 2 following lines of code*/
+    border-color:black;
+    border-width:medium;
+    background-color:white;
+    margin-left:auto; /* "auto" to help center the wrapper along with margin-right */
+    margin-right:auto; /* "auto" to help center the wrapper along with margin-left */
+}
+
+#header { /* "id" selector for the header element. The styles in this element will refer to whatever element in the html code has the id of "header." */
+    width:100%; /* Takes 100% width of wrapper's width */
+    background-color:white;
+}
+ 
+#navigation { /* "id" selector for the navigation element. The styles in this element will refer to whatever element in the html code has the id of "navigation." */
+    width:20%; /* Takes 30% width of wrapper's width */
+    background-color:white;
+    float:left; /* Positions navigation to left and allows for other elements to positioned next to it rather than below it*/
+    height:400px; /* Fixed height at 400px for demonstration. You normally wouldn't
+                    want to pre-set the height dimension of any element. */
+}
+ 
+#content_top { /* "id" selector for the content element. The styles in this element will refer to whatever element in the html code has the id of "content." */
+    width:80%; /* Takes up 70% width of wrapper's width. Notice how with the navigation's width, 30% + 70% = 100%. If we used width > 70%, the content section wouldn't fit */
+    background-color:white; 
+    text-align: center;
+    
+
+}
+
+#content1 { /* "id" selector for the content element. The styles in this element will refer to whatever element in the html code has the id of "content." */
+    width:45%; /* Takes up 70% width of wrapper's width. Notice how with the navigation's width, 30% + 70% = 100%. If we used width > 70%, the content section wouldn't fit */
+    background-color:white;
+    float:left; /* Positions content right next to the navigation section instead of under it.
+                    Floating to the right works just the same way, in this case */
+     /* height:400px; Fixed height at 400px for demonstration. You normally wouldn't
+                    want to pre-set the height dimension of any element. border-style:solid;*/
+    margin-left: 5%;
+
+}
+
+#content2 { /* "id" selector for the content element. The styles in this element will refer to whatever element in the html code has the id of "content." */
+    width:45%; /* Takes up 70% width of wrapper's width. Notice how with the navigation's width, 30% + 70% = 100%. If we used width > 70%, the content section wouldn't fit */
+    background-color:white;
+    float:right; /* Positions content right next to the navigation section instead of under it.
+                    Floating to the right works just the same way, in this case */
+     /* height:400px; Fixed height at 400px for demonstration. You normally wouldn't
+                    want to pre-set the height dimension of any element. border-style:solid;*/
+
+}
+
+
+#i_datos { 
+    width:100%; 
+    background-color:white;
+    margin:0 auto; 
+}
+
+
+#footer { /* "footer" selector for the header element. The styles in this element will refer to whatever element in the html code has the id of "footer." */
+    clear:both; /* Makes absolute sure to position footer under BOTH the content and navigation bars.
+                This is known as "clearing a float", and only works when an element(s) above is using the "float" property. */
+    width:100%; /* Takes up 100% width of wrapper */
+    background-color:gray;
+}
+
+h1 {color:black;text-align:center;}
+h2 {color:black;text-align:left;}
+h3 {color:black;text-align:center;}
+p {color:black;text-align:left;}
+
+article {border: 1px solid #ffbc66;
+      	padding: 1em;
+      	margin-left: 1em;
+      	margin-right: 1em;
+        margin-top:5px;
+        margin-bottom:50px;}
+
+article header {
+    background: #ffffff;
+    text-align: center;        
+}
+
+article h1 {
+    color:black;
+    text-align:center;
+    font-size: 1.5em;
+}
+article h2 {
+    color:black;
+    text-align:left;
+    font-size: 1.2em;
+}
+article h3 {
+    color:black;
+    text-align:center;
+    font-size: 1.0em;
+}
+
+article time {
+    color:black;    
+    font-size: 1.1em;
+    padding: 5px 0;}
+
+.codebox {
+    /* Below are styles for the codebox (not the code itself) */
+    border:1px solid black;
+    background-color:#EEEEFF;
+    width:300px;
+    overflow:auto;    
+    padding:10px;
+    text-align:left;
+    /* esto centra la caja en el medio */
+}
+.codebox code {
+    /* Styles in here affect the text of the codebox */
+    font-size:0.9em;
+    font-family:"Lucida Console";
+
+    /* You could also put all sorts of styling here, like different font, color, underline, etc. for the code.*/
+}

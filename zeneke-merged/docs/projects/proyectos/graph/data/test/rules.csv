@@ -1,0 +1,6 @@
+network,Datos Generales,LA CAIXA contenido cifrado,LA CAIXA actas comite direccion,R_MON_RedOcto
+network,Clientes y empleados,LA CAIXA-Contenido con mas de 50 DNIs,LA CAIXA-extractos
+network,Documentación Interna,R_PC_B_UsoInterno
+network,Fraudes en tarjetas,LA CAIXA-Contenido con mas de 50 tarjetas de credito,R_PC_B_Pista2
+network,Envíos a medios,R_PC_B_EnvioAPrensa_%
+network,Adjuntos a Webmail,R_PC_S_WebmailAttach_Ofi,R_PC_S_WebmailAttach_SSCC
